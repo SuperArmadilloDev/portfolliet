@@ -1,0 +1,25 @@
+{
+    "editor.tabSize": 4,
+    "editor.indentSize": "tabSize",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+
+    "editor.trimAutoWhitespace": true,
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+    },
+    "editor.formatOnSaveMode": "file",
+    "files.autoSave": "onFocusChange",
+    "vs-code-prettier-eslint.prettierLast": false,
+
+    "[svelte]": { "editor.defaultFormatter": "svelte.svelte-vscode" },
+    "svelte.plugin.svelte.defaultScriptLanguage": "ts",
+    "svelte.plugin.svelte.format.config.printWidth": 100,
+    "eslint.validate": [
+      "svelte"
+    ],
+}
