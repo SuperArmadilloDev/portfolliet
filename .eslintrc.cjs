@@ -26,7 +26,7 @@ module.exports = {
                 semi:'error',
                 'prefer-const': 'error',
                 quotes: ['error','single'],
-                'no-console': 'warn'
+                'no-console': 'warn',
             },
             parserOptions: {
                 parser: '@typescript-eslint/parser'
@@ -36,6 +36,6 @@ module.exports = {
     rules:{
         semi:'error',
         quotes: ['error','single'],
-        'no-console': 'warn'
+        'no-console': 'warn',
     },
 };
