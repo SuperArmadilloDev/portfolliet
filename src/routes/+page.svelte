@@ -14,6 +14,10 @@
 
 <h1>Hello world</h1>
 <Button class="connard" on:click={darkMode}>hey</Button>
+<div class="tst">test</div>
 
 <style>
+  .tst {
+    background-color: beige;
+  }
 </style>
