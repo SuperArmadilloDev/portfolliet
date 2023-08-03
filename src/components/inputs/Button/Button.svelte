@@ -12,7 +12,7 @@
   };
 
   // DYNAMIC
-  $: defaultClass = combStyle ? 'aaaaa' : 'bbb';
+  $: defaultClass = combStyle ? 'other-class' : 'some-class';
   /*************/
 </script>
 
@@ -39,7 +39,6 @@
     {...buttonProps}
   >
     <slot />
-    {combStyle}
   </button>
 {/if}
 

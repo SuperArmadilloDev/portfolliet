@@ -1,0 +1,7 @@
+{
+    "defaultLocale": "en",
+    "supportedLocales": {
+        "fr": "Français",
+        "en": "English"
+    }
+}

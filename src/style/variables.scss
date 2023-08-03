@@ -11,3 +11,30 @@ $screen-lg-min: 992px;
 
 // Large tablets and desktops
 $screen-xl-min: 1200px;
+
+/* COLORS */
+
+/* LIGHT THEME */
+$test: pink;
+/* DARK  THEME */
+$test-dark: black;
+
+:root {
+  color-scheme: light;
+
+  --color-background: #{$test};
+}
+
+[data-theme='dark']:root {
+  color-scheme: dark;
+
+  --color-background: #{$test-dark};
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme='auto']:root {
+    color-scheme: dark;
+
+    --color-background: #{$test-dark};
+  }
+}
