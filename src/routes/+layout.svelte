@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { Button } from 'src/components/inputs/index';
+
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
 
   onMount(() => {
