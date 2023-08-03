@@ -1,5 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { Button } from 'src/components/inputs/index';
+  import { page } from '$app/stores';
 
   onMount(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -11,11 +13,17 @@
 <aside class="side-elem">ya</aside>
 
 <main class="center-elem">
-  <nav class="caca">some nav</nav>
+  <nav>some nav</nav>
   <slot />
 </main>
 
-<aside class="side-elem">yeet</aside>
+<aside class="side-elem">
+  {#if $page.route.id === '/style-refs'}
+    <a href="/">home</a>
+  {:else}
+    <a href="/style-refs">style refs</a>
+  {/if}
+</aside>
 
 <style lang="scss">
   :global(body) {
