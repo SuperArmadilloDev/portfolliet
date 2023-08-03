@@ -13,11 +13,7 @@
 </svelte:head>
 
 <h1>Hello world</h1>
-<Button class="connard" on:click={darkMode}>hey</Button>
-<div class="tst">test</div>
+<Button on:click={darkMode}>hey</Button>
 
 <style>
-  .tst {
-    background-color: beige;
-  }
 </style>

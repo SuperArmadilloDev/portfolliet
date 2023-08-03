@@ -8,12 +8,15 @@
       window.document.body.classList.toggle('dark-mode');
     }
   });
+
+  function darkMode() {
+    window.document.body.classList.toggle('dark-mode');
+  }
 </script>
 
 <aside class="side-elem">ya</aside>
 
 <main class="center-elem">
-  <nav>some nav</nav>
   <slot />
 </main>
 
@@ -23,6 +26,8 @@
   {:else}
     <a href="/style-refs">style refs</a>
   {/if}
+
+  <Button on:click={darkMode} class="position-bottom">darkmode</Button>
 </aside>
 
 <style lang="scss">
@@ -44,13 +49,27 @@
 
   .side-elem {
     height: 100vh;
-    width: 45px;
+    width: 50px;
     background-color: aqua;
     position: sticky;
     top: 0px;
+    overflow: hidden;
 
     @include sm {
       background-color: blue;
     }
+  }
+
+  .position {
+    &-bottom {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  .side-elem :global(.position-bottom) {
+    @extend .position-bottom;
+    bottom: 0;
+    left: 0;
   }
 </style>
