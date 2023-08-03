@@ -18,7 +18,6 @@
 <aside class="side-elem">yeet</aside>
 
 <style lang="scss">
-  @import '../style/variables.scss';
   :global(body) {
     display: flex;
     flex-direction: row;

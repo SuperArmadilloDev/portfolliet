@@ -7,6 +7,13 @@ export default defineConfig({
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
+	css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@import \'./src/style/main.scss\';'
+            }
+        }
+	},
 	resolve: {
         alias: {
             src: path.resolve('src/'),
