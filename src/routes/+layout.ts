@@ -1,4 +1,4 @@
-import { addTranslations, setLocale, setRoute } from 'src/lib/i18n';
+import { addTranslations, setLocale, setRoute } from '$lib/i18n';
 
 /** @type {import('@sveltejs/kit').LayoutLoad} */
 export const load = async ({ data }) => {

@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  import { t, locale } from 'src/lib/i18n';
+  import { t, locale } from '$lib/i18n';
 
   const { status } = $page;
 </script>

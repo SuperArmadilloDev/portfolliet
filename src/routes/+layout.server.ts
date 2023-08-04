@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { loadTranslations, translations } from 'src/lib/i18n';
+import { loadTranslations, translations } from '$lib/i18n';
 
 /** @type {import('@sveltejs/kit').ServerLoad} */
 export const load = async ({ url, locals }) => {

@@ -3,7 +3,7 @@
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
 
-  import { t, locales, locale } from 'src/lib/i18n';
+  import { t, locales, locale } from '$lib/i18n';
 
   import { Button } from 'src/components/inputs/index';
 
@@ -24,31 +24,35 @@
   $: route = $page.data.route;
 </script>
 
-<aside class="side-elem">ya</aside>
+<div id="theme-container" class="">
+  <div id="app-content">
+    <aside class="side-elem">ya</aside>
 
-<main class="center-elem">
-  <p>{route}</p>
-  <p>{$t('layout.title')}</p>
-  <slot />
-  <select on:change={({ target }) => changelang(target)}>
-    {#each $locales as lc}
-      <option value="/{lc}{route}" selected={lc === $locale}>{$t(`lang.${lc}`)}</option>
-    {/each}
-  </select>
-</main>
+    <main class="center-elem">
+      <p>{route}</p>
+      <p>{$t('layout.title')}</p>
+      <slot />
+      <select on:change={({ target }) => changelang(target)}>
+        {#each $locales as lc}
+          <option value="/{lc}{route}" selected={lc === $locale}>{$t(`lang.${lc}`)}</option>
+        {/each}
+      </select>
+    </main>
 
-<aside class="side-elem">
-  {#if route === '/style-refs'}
-    <a href="/{$locale}">home</a>
-  {:else}
-    <a href="/{$locale}/style-refs">style refs</a>
-  {/if}
+    <aside class="side-elem">
+      {#if route === '/style-refs'}
+        <a href="/{$locale}">home</a>
+      {:else}
+        <a href="/{$locale}/style-refs">style refs</a>
+      {/if}
 
-  <Button on:click={darkMode} class="position-bottom">darkmode</Button>
-</aside>
+      <Button on:click={darkMode} class="position-bottom">darkmode</Button>
+    </aside>
+  </div>
+</div>
 
 <style lang="scss">
-  :global(body) {
+  #app-content {
     display: flex;
     flex-direction: row;
 

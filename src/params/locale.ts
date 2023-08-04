@@ -1,4 +1,4 @@
-import { locales } from 'src/lib/i18n';
+import { locales } from '$lib/i18n';
 
 /** @type {import('@sveltejs/kit').ParamMatcher} */
 export function match(param) {
