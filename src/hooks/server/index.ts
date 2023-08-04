@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import type { MaybePromise, NavigationEvent, RequestEvent, ResolveOptions } from '@sveltejs/kit';
 import { defaultLocale, locales, setLocale, setRoute } from 'src/lib/i18n';
 
 /** @type {import('@sveltejs/kit').Handle} */
-export const handle = async ({ event, resolve }) => {
+export const handle = async ({event, resolve}: {
+  event: RequestEvent,
+  resolve(event: RequestEvent, opts?: ResolveOptions): MaybePromise<Response>
+}) => {
   const { url, request } = event;
   const { pathname } = url;
 
@@ -31,16 +35,17 @@ export const handle = async ({ event, resolve }) => {
 };
 
 /** @type {import('@sveltejs/kit').HandleServerError} */
-export const handleError = async ({event, error}) => {
+export const handleError = async ({event, error}: {event: NavigationEvent, error: unknown}) => {
+  // eslint-disable-next-line no-console
   console.error(error);
+  // @ts-ignore
   const { locals } = event;
 
-  // @ts-ignore
+
   const { lang } = locals;
 
   await setLocale(lang);
   await setRoute('error');
 
-  // @ts-ignore
   return locals;
 };

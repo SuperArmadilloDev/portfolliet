@@ -8,9 +8,9 @@
   import { Button } from 'src/components/inputs/index';
 
   onMount(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      window.document.body.classList.toggle('dark-mode');
-    }
+    // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    //   window.document.body.classList.toggle('dark-mode');
+    // }
   });
 
   function darkMode() {
