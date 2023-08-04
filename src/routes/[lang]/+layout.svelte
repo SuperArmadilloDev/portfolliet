@@ -1,8 +1,11 @@
 <script lang="ts">
-  import { Button } from 'src/components/inputs/index';
-
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
+
+  import { t, locales, locale } from 'src/lib/i18n';
+
+  import { Button } from 'src/components/inputs/index';
 
   onMount(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -13,19 +16,32 @@
   function darkMode() {
     window.document.body.classList.toggle('dark-mode');
   }
+
+  function changelang(target: EventTarget | null) {
+    goto((target as HTMLSelectElement)?.value);
+  }
+
+  $: route = $page.data.route;
 </script>
 
 <aside class="side-elem">ya</aside>
 
 <main class="center-elem">
+  <p>{route}</p>
+  <p>{$t('layout.title')}</p>
   <slot />
+  <select on:change={({ target }) => changelang(target)}>
+    {#each $locales as lc}
+      <option value="/{lc}{route}" selected={lc === $locale}>{$t(`lang.${lc}`)}</option>
+    {/each}
+  </select>
 </main>
 
 <aside class="side-elem">
-  {#if $page.route.id === '/style-refs'}
-    <a href="/">home</a>
+  {#if route === '/style-refs'}
+    <a href="/{$locale}">home</a>
   {:else}
-    <a href="/style-refs">style refs</a>
+    <a href="/{$locale}/style-refs">style refs</a>
   {/if}
 
   <Button on:click={darkMode} class="position-bottom">darkmode</Button>
@@ -61,15 +77,8 @@
     }
   }
 
-  .position {
-    &-bottom {
-      position: absolute;
-      bottom: 0;
-    }
-  }
-
   .side-elem :global(.position-bottom) {
-    @extend .position-bottom;
+    position: absolute;
     bottom: 0;
     left: 0;
   }
