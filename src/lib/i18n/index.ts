@@ -14,22 +14,10 @@ const config = {
       key: 'layout',
       loader: async () => (await import('./en/layout.json')).default,
     },
-    // about must be retreived
-    {
-      locale: 'en',
-      key: 'about',
-      loader: async () => (await import('./en/about.json')).default,
-    },
-
     {
       locale: 'fr',
-      key: 'menu',
+      key: 'layout',
       loader: async () => (await import('./fr/layout.json')).default,
-    },
-    {
-      locale: 'fr',
-      key: 'content',
-      loader: async () => (await import('./fr/about.json')).default,
     },
   ]
 };

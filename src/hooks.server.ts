@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defaultLocale, locales, setLocale, setRoute } from 'src/lib/i18n';
 
 /** @type {import('@sveltejs/kit').Handle} */
@@ -32,10 +33,13 @@ export const handle = async ({ event, resolve }) => {
 /** @type {import('@sveltejs/kit').HandleServerError} */
 export const handleError = async ({ event }) => {
   const { locals } = event;
+
+  // @ts-ignore
   const { lang } = locals;
 
   await setLocale(lang);
   await setRoute('error');
 
+  // @ts-ignore
   return locals;
 };
