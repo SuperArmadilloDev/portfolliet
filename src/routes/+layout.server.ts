@@ -1,15 +1,28 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { loadTranslations, translations } from '$lib/i18n';
+// /* eslint-disable @typescript-eslint/ban-ts-comment */
+// import { loadTranslations, translations } from '$lib/i18n';
 
-/** @type {import('@sveltejs/kit').ServerLoad} */
-export const load = async ({ url, locals }) => {
-  const { pathname } = url;
-  //@ts-ignore
-  const { lang } = locals;
+// import type { LayoutServerLoad } from './$types';
 
-  const route = pathname.replace(new RegExp(`^/${lang}`), '');
+// // /** @type {import('@sveltejs/kit').ServerLoad} */
+// // export const load = async ({ url, locals }) => {
+// //   const { pathname } = url;
+// //   //@ts-ignore
+// //   const { lang } = locals;
 
-  await loadTranslations(lang, route);
+// //   const route = pathname.replace(new RegExp(`^/${lang}`), '');
 
-  return { i18n: { route, lang }, translations: translations.get() };
-};
+// //   await loadTranslations(lang, route);
+
+// //   return { i18n: { route, lang }, translations: translations.get() };
+// // };
+
+// export const load: LayoutServerLoad = async ({locals}) => {
+//   const {theme, locale, dictionary} = locals;
+
+//   return {
+// 		theme,
+// 		locale,
+// 		defaultMeta: dictionary.defaultMeta,
+// 		copy: {common: dictionary.common, unique: {}},
+// 	};
+// };

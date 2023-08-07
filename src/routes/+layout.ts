@@ -1,14 +1,14 @@
-import { addTranslations, setLocale, setRoute } from '$lib/i18n';
+// import { addTranslations, setLocale, setRoute } from '$lib/i18n';
 
-/** @type {import('@sveltejs/kit').LayoutLoad} */
-export const load = async ({ data }) => {
-  const { i18n, translations } = data;
-  const { lang, route } = i18n;
+// /** @type {import('@sveltejs/kit').LayoutLoad} */
+// export const load = async ({ data }) => {
+//   const { i18n, translations } = data;
+//   const { lang, route } = i18n;
 
-  addTranslations(translations);
+//   addTranslations(translations);
 
-  await setRoute(route);
-  await setLocale(lang);
+//   await setRoute(route);
+//   await setLocale(lang);
 
-  return i18n;
-};
+//   return i18n;
+// };

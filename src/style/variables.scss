@@ -11,3 +11,30 @@ $screen-lg-min: 992px;
 
 // Large tablets and desktops
 $screen-xl-min: 1200px;
+
+/* COLORS */
+
+$some-test-color-dark: #000000;
+$some-test-color-light: #fff;
+
+[data-theme='light'] {
+    color-scheme: light;
+
+    --some-test-color: var(some-test-color-light)
+
+}
+
+[data-theme='dark'] {
+    color-scheme: dark;
+
+    --some-test-color: var(some-test-color-dark)
+
+}
+
+@media (prefers-color-scheme: dark) {
+    [data-theme='auto'] {
+        color-scheme: dark;
+
+        --some-test-color: var(some-test-color-dark)
+    }
+}

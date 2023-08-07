@@ -1,10 +1,4 @@
-import { derived } from 'svelte/store';
-import type {Writable} from 'svelte/store';
-// import type { Theme } from 'src/types';
+import type { Theme } from 'src/types';
+import {writable} from 'svelte/store';
 
-export enum Theme {
-    Light = 'light',
-    Dark = 'dark'
-}
-
-export const theme = derived(session)
+export const theme = writable<Theme>();
