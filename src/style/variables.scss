@@ -14,27 +14,27 @@ $screen-xl-min: 1200px;
 
 /* COLORS */
 
-$some-test-color-dark: #000000;
-$some-test-color-light: #fff;
+/* LIGHT THEME */
+$test: pink;
+/* DARK  THEME */
+$test-dark: black;
 
-[data-theme='light'] {
-    color-scheme: light;
+:root {
+  color-scheme: light;
 
-    --some-test-color: var(some-test-color-light)
-
+  --color-background: #{$test};
 }
 
-[data-theme='dark'] {
-    color-scheme: dark;
+[data-theme='dark']:root {
+  color-scheme: dark;
 
-    --some-test-color: var(some-test-color-dark)
-
+  --color-background: #{$test-dark};
 }
 
 @media (prefers-color-scheme: dark) {
-    [data-theme='auto'] {
-        color-scheme: dark;
+  [data-theme='auto']:root {
+    color-scheme: dark;
 
-        --some-test-color: var(some-test-color-dark)
-    }
+    --color-background: #{$test-dark};
+  }
 }

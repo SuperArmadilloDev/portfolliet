@@ -1,5 +1,5 @@
-import type { Handle, MaybePromise, RequestEvent, ResolveOptions } from '@sveltejs/kit';
-import { isValidTheme } from 'src/types/theme';
+import type { Handle } from '@sveltejs/kit';
+import { isValidTheme } from 'src/types';
 
 export const handle: Handle = async (input) => {
   const {event, resolve} = input;
@@ -9,7 +9,6 @@ export const handle: Handle = async (input) => {
 
   if (isValidTheme(theme)) event.locals.theme = theme;
 
-  console.log(theme);
   return await resolve(event, {
 		transformPageChunk: ({html}) =>
 			html.replace('%THEME%', theme),

@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import { t } from '$lib/i18n';
+  import Testing from 'src/components/Testing.svelte';
 </script>
 
 <svelte:head>
@@ -9,7 +9,7 @@
 
 <h1>Hello world</h1>
 
-<!-- <p>{$t('layout.title')}</p> -->
+<!-- <Testing /> -->
 
 <style>
 </style>
