@@ -1,9 +1,10 @@
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({locals}) => {
-	const { theme } = locals;
+	const { theme, locale } = locals;
 
 	return {
-		theme: theme,
+		theme,
+		locale
 	};
 };

@@ -1,3 +1,4 @@
-export type {Theme} from './theme';
+import type { formatPostcssSourceMap } from 'vite';
 
-export { isValidTheme } from './theme';
+export {isValidTheme, type Theme} from './theme';
+export { defaultLocale, isSupportedLocale, supportedLocales, type SupportedLocale } from './locale';

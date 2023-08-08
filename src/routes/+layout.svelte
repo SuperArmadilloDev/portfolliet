@@ -4,12 +4,9 @@
   import { applyAction, enhance } from '$app/forms';
 
   import { Button } from 'src/components/inputs/index';
-  import type { Theme } from 'src/types';
+  import { type Theme, type SupportedLocale, supportedLocales } from 'src/types';
 
   export let data: LayoutServerData;
-
-  let theme: Theme = data.theme;
-  $: nextTheme = findNewTheme(theme);
 
   function findNewTheme(theme: Theme) {
     let newTheme = theme;
@@ -20,6 +17,14 @@
     } else newTheme = theme === 'dark' ? 'light' : 'dark';
     return newTheme;
   }
+
+  // function changeLocale(locale: SupportedLocale) {}
+
+  let theme: Theme = data.theme;
+  $: nextTheme = findNewTheme(theme);
+
+  let locale: SupportedLocale = data.locale;
+  $: newLocale = locale;
 </script>
 
 <aside class="side-elem">ya</aside>
@@ -42,6 +47,24 @@
     <input name="theme" value={nextTheme} hidden />
     <Button>DarkTheme</Button>
   </form>
+
+  <form
+    method="POST"
+    action="/?/locale"
+    use:enhance={async () => {
+      locale = newLocale;
+      document.documentElement.dataset.locale = locale;
+      return async ({ result }) => await applyAction(result);
+    }}
+  >
+    <input name="locale" value={newLocale} hidden />
+    <select>
+      {#each supportedLocales as lc}
+        <option value={lc} selected={lc === newLocale}>{lc}</option>
+      {/each}
+    </select>
+  </form>
+
   <!-- {#if route === '/style-refs'}
         <a href="/{$locale}">home</a>
       {:else}
