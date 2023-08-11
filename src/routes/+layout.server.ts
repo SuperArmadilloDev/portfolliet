@@ -7,6 +7,7 @@ export const load: LayoutServerLoad = async ({url, locals}) => {
 	const route = pathname.replace(new RegExp(`^/${locale}`), '');
 
 	await loadTranslations(locale, route);
+
 	return {
 		theme,
 		i18n: {route, locale}, translations: translations.get()

@@ -6,6 +6,7 @@ const TEN_YEARS_IN_SECONDS = 10 * 365 * 24 * 60 * 60;
 export const actions: Actions = {
 	theme: async ({cookies, request}) => {
 		const data = await request.formData();
+		console.log(data);
 		const theme = data.get('theme') as string;
 
 		if (!isValidTheme(theme))

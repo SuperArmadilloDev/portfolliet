@@ -2,7 +2,7 @@ import i18n, { type Config } from 'sveltekit-i18n';
 import { defaultLocale, supportedLocales } from './languages.json';
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
+// import { fileURLToPath } from 'url';
 
 
 type Loaders = {
@@ -11,8 +11,8 @@ type Loaders = {
   loader: () => Promise<unknown>
 }
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 // function createLoaders() {
 //   const loaders: Loaders[] = [];
