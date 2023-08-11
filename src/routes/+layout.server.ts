@@ -4,7 +4,10 @@ import type { LayoutServerLoad } from './$types';
 export const load: LayoutServerLoad = async ({url, locals}) => {
 	const { theme, locale } = locals;
 	const { pathname } = url;
-	const route = pathname.replace(new RegExp(`^/${locale}`), '');
+
+
+  console.log(pathname);
+  const route = pathname.replace(new RegExp(`^/${locale}`), '');
 
 	await loadTranslations(locale, route);
 
