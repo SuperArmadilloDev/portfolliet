@@ -22,7 +22,7 @@ export const actions: Actions = {
 		if (!isSupportedLocale(locale))
 			return fail(400, {locale, missing: true});
 
-		cookies.set('locale', locale, {path: '/', maxAge: TEN_YEARS_IN_SECONDS});
+		cookies.set('locale', locale as string, {path: '/', maxAge: TEN_YEARS_IN_SECONDS});
 
 		return {success: true};
 	},

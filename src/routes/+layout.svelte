@@ -5,6 +5,9 @@
 
   import { Button } from 'src/components/inputs/index';
   import { type Theme, type SupportedLocale, supportedLocales } from 'src/types';
+  import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
+  import { t, locales, locale } from '$lib/translations';
 
   export let data: LayoutServerData;
 
@@ -18,13 +21,26 @@
     return newTheme;
   }
 
-  // function changeLocale(locale: SupportedLocale) {}
+  async function changeLocale(target: EventTarget | null) {
+    console.log('AAAAAAAAAAA');
+    const selectedLocale = (target as HTMLSelectElement)?.value;
+
+    const formData = new FormData();
+    formData.append('locale', selectedLocale);
+
+    await fetch('/?/locale', {
+      method: 'POST',
+      body: formData,
+    });
+    goto(`/${selectedLocale}/${route}`);
+  }
 
   let theme: Theme = data.theme;
   $: nextTheme = findNewTheme(theme);
 
-  let locale: SupportedLocale = data.locale;
-  $: newLocale = locale;
+  $: route = $page.data.route;
+
+  Object.entries;
 </script>
 
 <aside class="side-elem">ya</aside>
@@ -48,22 +64,11 @@
     <Button>DarkTheme</Button>
   </form>
 
-  <form
-    method="POST"
-    action="/?/locale"
-    use:enhance={async () => {
-      locale = newLocale;
-      document.documentElement.dataset.locale = locale;
-      return async ({ result }) => await applyAction(result);
-    }}
-  >
-    <input name="locale" value={newLocale} hidden />
-    <select>
-      {#each supportedLocales as lc}
-        <option value={lc} selected={lc === newLocale}>{lc}</option>
-      {/each}
-    </select>
-  </form>
+  <select on:change={({ target }) => changeLocale(target)}>
+    {#each Object.entries(supportedLocales) as lc}
+      <option value="/{lc[0]}{route}" selected={lc[0] === $locale}>{lc[1]}</option>
+    {/each}
+  </select>
 
   <!-- {#if route === '/style-refs'}
         <a href="/{$locale}">home</a>

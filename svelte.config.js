@@ -6,12 +6,12 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter(),
-		files: {
-			hooks:{
-				server: 'src/hooks/server/index.ts',
-				client: 'src/hooks/client/index'
-			},
-		}
+		// files: {
+		// 	hooks:{
+		// 		server: 'src/hooks/server/index.ts',
+		// 		client: 'src/hooks/client/index'
+		// 	},
+		// }
 	}
 };
 
