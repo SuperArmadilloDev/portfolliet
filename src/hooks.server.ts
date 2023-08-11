@@ -14,8 +14,6 @@ export const handle: Handle = async ({event, resolve}: {
 
   const localeInUrl = supportedLocalesKeys.find((l) => l === `${event.url.pathname.match(/[^/]+?(?=\/|$)/)}`.toLowerCase());
 
-  console.log('localeurl', localeInUrl);
-  debugger;
 
   if (!localeInUrl) {
     if(!isSupportedLocale(browserLocale)) browserLocale = defaultLocale;

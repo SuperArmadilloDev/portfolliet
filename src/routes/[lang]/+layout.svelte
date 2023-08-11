@@ -22,18 +22,16 @@
   }
 
   async function changeLocale(target: EventTarget | null) {
-    // console.log('AAAAAAAAAAA');
     const route = (target as HTMLSelectElement)?.value;
     const selectedLocale = route.split('/')[1];
 
-    // const formData = new FormData();
-    // formData.append('locale', selectedLocale);
+    const formData = new FormData();
+    formData.append('locale', selectedLocale);
 
-    // await fetch('/?/locale', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
-    console.log(selectedLocale, $page.data.route, route);
+    await fetch(`/${$locale}/?/locale`, {
+      method: 'POST',
+      body: formData,
+    });
     goto(route);
   }
 
