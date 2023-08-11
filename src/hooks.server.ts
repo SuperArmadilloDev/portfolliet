@@ -1,35 +1,33 @@
 import type { Handle, MaybePromise, RequestEvent, ResolveOptions } from '@sveltejs/kit';
-import { isValidTheme, isSupportedLocale, defaultLocale, supportedLocalesKeys } from 'src/types';
-
-import {match} from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
+import { isValidTheme, isSupportedLocale, defaultLocale, supportedLocalesKeys, type Theme } from 'src/types';
 
 export const handle: Handle = async ({event, resolve}: {
   event: RequestEvent,
   resolve(event: RequestEvent, opts?: ResolveOptions): MaybePromise<Response>
 }) => {
 
-  const theme = event.cookies.get('theme') ?? 'auto';
+  const theme  = event.cookies.get('theme') ?? 'auto';
   if (isValidTheme(theme)) event.locals.theme = theme;
 
 
-  const languages = new Negotiator({
-    headers: {'accept-language': event.request.headers.get('accept-language') || ''},
-  }).languages();
-
-  const browserLocale = event.cookies.get('locale') ?? match(languages, [...supportedLocalesKeys], defaultLocale);
+  let browserLocale = event.cookies.get('locale') ?? `${`${event.request.headers.get('accept-language')}`.match(/[a-zA-Z]+?(?=-|_|,|;)/)}`.toLowerCase();
 
   const localeInUrl = supportedLocalesKeys.find((l) => l === `${event.url.pathname.match(/[^/]+?(?=\/|$)/)}`.toLowerCase());
 
-  if (!localeInUrl)
-    if(isSupportedLocale(browserLocale))
-      return new Response(undefined, { headers: { 'location': `/${browserLocale}${event.url.pathname}` }, status: 301 });
-    else
-      return new Response(undefined, { status: 404, statusText: 'current language not found' });
+  console.log('localeurl', localeInUrl);
+  debugger;
 
-  event.locals.locale = browserLocale;
+  if (!localeInUrl) {
+    if(!isSupportedLocale(browserLocale)) browserLocale = defaultLocale;
 
-  return await resolve(event, {
+    event.locals.locale = browserLocale;
+    return new Response(undefined, { headers: { 'location': `/${browserLocale}${event.url.pathname}` }, status: 301 });
+  }
+
+  event.locals.locale = localeInUrl;
+
+
+  return await resolve({ ...event, locals: { locale: localeInUrl, theme: theme as Theme } }, {
 		transformPageChunk: ({html}) =>
 			html.replace('%LANGUAGE%', browserLocale).replace('%THEME%', theme),
 	});
