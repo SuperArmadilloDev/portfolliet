@@ -10,23 +10,23 @@ export const handle: Handle = async ({event, resolve}: {
   if (isValidTheme(theme)) event.locals.theme = theme;
 
 
-  let browserLocale = event.cookies.get('locale') ?? `${`${event.request.headers.get('accept-language')}`.match(/[a-zA-Z]+?(?=-|_|,|;)/)}`.toLowerCase();
+  // let browserLocale = `${`${event.request.headers.get('accept-language')}`.match(/[a-zA-Z]+?(?=-|_|,|;)/)}`.toLowerCase();
 
-  const localeInUrl = supportedLocalesKeys.find((l) => l === `${event.url.pathname.match(/[^/]+?(?=\/|$)/)}`.toLowerCase());
-
-
-  if (!localeInUrl) {
-    if(!isSupportedLocale(browserLocale)) browserLocale = defaultLocale;
-
-    event.locals.locale = browserLocale;
-    return new Response(undefined, { headers: { 'location': `/${browserLocale}${event.url.pathname}` }, status: 301 });
-  }
-
-  event.locals.locale = localeInUrl;
+  // const localeInUrl = supportedLocalesKeys.find((l) => l === `${event.url.pathname.match(/[^/]+?(?=\/|$)/)}`.toLowerCase());
 
 
-  return await resolve({ ...event, locals: { locale: localeInUrl, theme: theme as Theme } }, {
+  // if (!localeInUrl) {
+  //   if(!isSupportedLocale(browserLocale)) browserLocale = defaultLocale;
+
+  //   event.locals.locale = browserLocale;
+  //   return new Response(undefined, { headers: { 'location': `/${browserLocale}${event.url.pathname}` }, status: 301 });
+  // }
+
+  // event.locals.locale = localeInUrl;
+
+
+  return await resolve( event, {
 		transformPageChunk: ({html}) =>
-			html.replace('%LANGUAGE%', browserLocale).replace('%THEME%', theme),
+			html.replace('%THEME%', theme),
 	});
 };

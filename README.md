@@ -36,3 +36,10 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+## TODO TRANSLATION
+
+- [ ] Change language with a select button
+- [ ] Put the current langage in the URL
+- [ ] Save the language in the local storage

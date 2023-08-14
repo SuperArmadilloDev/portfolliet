@@ -1,15 +1,19 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import type { LayoutServerData } from '../$types';
+  import type { LayoutServerData } from './$types';
   import { applyAction, enhance } from '$app/forms';
 
   import { Button } from 'src/components/inputs/index';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
-  import { t, locales, locale } from '$lib/translations';
   import type { Theme } from 'src/types';
+  import { i18n } from '$lib/translations';
+
+  import test from '$lib/translations/en/layout.json';
 
   export let data: LayoutServerData;
+
+  const { t } = $i18n;
 
   function findNewTheme(theme: Theme) {
     let newTheme = theme;
@@ -28,7 +32,7 @@
     const formData = new FormData();
     formData.append('locale', selectedLocale);
 
-    await fetch(`/${$locale}/?/locale`, {
+    await fetch('/?/locale', {
       method: 'POST',
       body: formData,
     });
@@ -40,25 +44,20 @@
 
   $: route = $page.data.route;
 
-  Object.entries;
+  console.log(test);
 </script>
 
 <aside class="side-elem">ya</aside>
 
 <main class="center-elem">
-  <!-- <p>{theme}</p> -->
+  <p>{t('test')}</p>
   <slot />
-  <select on:change={({ target }) => changeLocale(target)}>
-    {#each $locales as lc}
-      <option value="/{lc}{route}" selected={lc === $locale}>{$t(`supportedLocales.${lc}`)}</option>
-    {/each}
-  </select>
 </main>
 
 <aside class="side-elem">
   <form
     method="POST"
-    action="/{$locale}/?/theme"
+    action="/?/theme"
     use:enhance={async () => {
       theme = nextTheme;
       document.documentElement.dataset.theme = theme;

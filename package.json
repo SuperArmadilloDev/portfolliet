@@ -1,6 +1,7 @@
 {
 	"name": "portfolliet",
 	"version": "0.0.1",
+	"license": "",
 	"scripts": {
 		"dev": "vavite-loader vite dev",
 		"build": "vite build",
@@ -40,6 +41,10 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"sveltekit-i18n": "^2.4.2"
+		"i18next": "^23.4.4",
+		"i18next-browser-languagedetector": "^7.1.0",
+		"i18next-http-backend": "^2.2.1",
+		"i18next-localstorage-cache": "^1.1.1",
+		"svelte-i18next": "^2.0.0"
 	}
 }
